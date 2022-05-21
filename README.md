@@ -20,7 +20,7 @@ To install the scripts clone the repositoryy first and cd into it, and then simp
 Then, you can simply remove the .c files and copy everything to /usr/bin.
 
 
-# Scripting
+# Usage
 
 The badusb script uses conventional Duckyscript, and its usage is:
 
