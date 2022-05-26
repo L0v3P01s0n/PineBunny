@@ -10,7 +10,7 @@ Even though those devices are the best ones to use, the tool should work on any 
 # ¿How to check if my kernel is compatible?
 
 To see if your kernel was compiled with USBGadget enabled, you can typically check the file "/proc/config.gz" to see your current kernel configuration.
-Copy that file to a directory you like, and then gunzip it with `gunzip config.gz` and now you should have a file named simply "config". Open the file and search for the line `CONFIG_USB_GADGET=y`. If it ends in `y` it is enabled, otherwise you'll have to recompile the kernel yourself and enable it; which is beyond the scope of this repository.
+Do `gunzip -c /proc/config.gz | grep CONFIG_USB_GADGET=` and check if it ends in `y`. If not you'll have to recompile the kernel yourself and enable it; which is beyond the scope of this repository.
 
 
 # Installation
