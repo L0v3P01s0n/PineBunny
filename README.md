@@ -1,8 +1,8 @@
-# BadUSB-USBGadget
+# PineBunny
 
-# BadUSB and hidg0 virtual device enabler for USBGadget enabled kernels.
+# An attempt to implement something similar to what a Bash Bunny does on the PinePhone (Pro)
 
-This is a recollection of scripts to enable the virtual /dev/hidg0 device on USBGadget enabled kernels and perform keystroke injection attacks emulating a keyboard. This tool is mostly useful in penetration testing assesments and engagements and the ideal devices to use this with would be any kind of Raspberry Pi model/any single board linux computer for that matter, and the PinePhone(Pro) or any other linux phone with a compatible kernel.
+This is a recollection of scripts to enable the virtual /dev/hidg0 device on USBGadget enabled kernels and perform keystroke injection attacks emulating a keyboard. This tool is mostly useful in penetration testing assesments and engagements and the ideal devices to use this with would be any kind of Raspberry Pi model/any single board linux computer for that matter, and the PinePhone (Pro) or any other linux phone with a compatible kernel.
 Even though those devices are the best ones to use, the tool should work on any device as long as it has USBGadget enabled.
 
 
@@ -17,12 +17,16 @@ Copy that file to a directory you like, and then gunzip it with `gunzip config.g
 To install the scripts clone the repositoryy first and cd into it, and then simply compile usleep and hid-gadget-test:
 `gcc -o hid-gadget-test.c hid-gadget-test`
 `gcc -o usleep.c usleep`
-Then, you can simply remove the .c files and copy everything to /usr/bin.
+Then, you can simply remove the .c files and copy the binaries to /usr/bin.
+Keep in mind you'll need a different 'badusb' binary for each keyboard layout, so copy the one for your keyboard like so:
+`sudo cp badusb-[YOUR_LAYOUT] /usr/bin/badusb`
+
+Only en_US and es_ES are supported right now, I'll work on more layouts when I get the time.
 
 
 # Usage
 
 The badusb script uses conventional Duckyscript, and its usage is:
 
-`sudo mkhidg0` (you need to enable /dev/hidg0 first)
+`sudo mkhidg0` (you need to enable /dev/hidg0 first, tho mkhidg0 also enables the ecm module of USB Gadget, so you'll have ethernet over USB, too. Just keep in mind that your target won't get an IP address automatically assigned without a proper dhcp server running. I personally like to use dnsmasq)
 `sudo badusb duckypayload.txt`
