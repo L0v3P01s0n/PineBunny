@@ -68,4 +68,6 @@ DELAY 100
 STRING ./hello
 ENTER
 ```
+`sudo badusb payload.txt`
+
 The cool thing is that it even works on airgapped computers!
