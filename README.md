@@ -70,4 +70,6 @@ ENTER
 ```
 `sudo badusb payload.txt`
 
-The cool thing is that it even works on airgapped computers!
+Remember, ethernet over USB can give you physical network access to a computer, which means you could hack an airgapped PC too!
+Moreover, you are not forced to use a Duckyscript payload, you could just ignore that and launch a nmap scan physically connected over USB!
+The options are endless...
