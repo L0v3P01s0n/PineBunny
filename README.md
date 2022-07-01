@@ -15,7 +15,7 @@ Do `gunzip -c /proc/config.gz | grep CONFIG_USB_GADGET=` and check if it ends in
 
 # Installation
 
-To install the scripts clone the repositoryy first and cd into it, and then simply compile usleep and hid-gadget-test:
+To install the scripts clone the repository first and cd into it, and then simply compile usleep and hid-gadget-test:
 `gcc -o hid-gadget-test.c hid-gadget-test`
 `gcc -o usleep.c usleep`
 Then, you can simply remove the .c files and copy the binaries to /usr/bin.
