@@ -173,7 +173,7 @@ static struct options kval[] = {
 	{.opt = "volume-up",	.val = 0x80}, // These are multimedia keys, they will not work on standard keyboard, they need a different USB descriptor
 	{.opt = "volume-down",	.val = 0x81},
 	{.opt = "pipe",	.val = 0x64}
-	{.opt = NULL}
+	//{.opt = NULL}
 };
 
 int keyboard_fill_report(char report[8], char buf[BUF_LEN], int *hold)
