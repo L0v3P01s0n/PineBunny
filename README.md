@@ -34,7 +34,7 @@ The badusb script uses conventional Duckyscript, and its usage is:
 
 # Example payload using HID + Ethernet
 
-`usbarsenal` can enable Ethernet over USB, and that can be used for different kinds of attack. The only thing you have to keep in mind is that you need to manually assign an IP address to the usb0 interface, as well as a netmask and you also need a proper dhcp and dns server (like dnsmasq) so that the target machine gets assigned an IP address automatically.
+`usbarsenal` can enable Ethernet over USB, and that can be used for different kinds of attacks. The only thing you have to keep in mind is that you need to manually assign an IP address to the usb0 interface, as well as a netmask and you also need a proper dhcp and dns server (like dnsmasq) so that the target machine gets assigned an IP address automatically.
 
 Let's say we have a file we want the target to download and execute, a file hosted on the PinePhone itself (like `python -m http.server` for example).
 We'll need to prepare the usb0 interface and a dhcp server so the computer gets an IP assigned: `sudo usbarsenal`, `sudo ifconfig usb0 up 10.0.0.1 netmask 255.255.255.0`. Then, the dhcp server with this `dnsmasq.conf` configuration:
