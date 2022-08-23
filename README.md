@@ -1,7 +1,6 @@
 # PineBunny
 
 # An attempt to implement something similar to what a Bash Bunny does on the PinePhone (Pro)
-### WARNING! Very Alpha state, right now it works only manually. Automation will be added in the future
 
 This is a recollection of scripts to enable the virtual /dev/hidg0 device on USBGadget enabled kernels and perform keystroke injection attacks emulating a keyboard. This tool is mostly useful in penetration testing assesments and engagements and the ideal devices to use this with would be any kind of Raspberry Pi model/any single board linux computer for that matter, and the PinePhone (Pro) or any other linux phone with a compatible kernel.
 Even though those devices are the best ones to use, the tool should work on any device as long as it has USBGadget enabled.
