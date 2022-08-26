@@ -41,7 +41,7 @@ We'll need to prepare the usb0 interface and a dhcp server so the computer gets 
 
 ```
 interface=usb0
-dhcp-range=10.0.0.2, 10.66.0.30, 255.255.255.0, 12h
+dhcp-range=10.0.0.2, 10.0.0.30, 255.255.255.0, 12h
 dhcp-option=3, 10.0.0.1
 dhcp-option=6, 10.0.0.1 
 server=8.8.8.8
