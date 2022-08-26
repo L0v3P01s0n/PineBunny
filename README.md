@@ -58,7 +58,7 @@ DELAY 500
 STRING xfce4-terminal
 ENTER
 DELAY 1000
-STRING wget http://10.66.0.1:8000/hello
+STRING wget http://10.0.0.1:8000/hello
 ENTER
 DELAY 400
 STRING chmod +x ./hello
