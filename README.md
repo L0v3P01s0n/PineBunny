@@ -20,7 +20,8 @@ To install the scripts clone the repository first and cd into it, and then simpl
 Then, you can simply remove the .c files and copy those along with the pinebunny and usbarsenal binaries to /usr/local/bin.
 Everytime you run the 'pinebunny' script you'll have to choose the layout you want to use. BUT, if you only need to use one of them and don't want to be entering everytime you use the tool, you can hardcode it in and it won't ask you again unless you change it back. Just simply edit pinebunny at the beginning of the file from something like this:
 
-`#!/bin/bash
+```
+#!/bin/bash
 
 defdelay=0
 kb="/dev/hidg0 keyboard"
@@ -30,13 +31,13 @@ last_string=""
 line_num=0
 layout=""	#Enter the name of the layout here [us, es, it]
 choose=true	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
-`
+```
 To something like this:
 
-`
+```
 layout="us"	#Enter the name of the layout here [us, es, it]
 choose=false	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
-`
+```
 
 Only us ,es and it layouts are supported right now, I'll work on more layouts when I get the time.
 
@@ -76,7 +77,7 @@ listen-address=127.0.0.1
 ```
 `sudo dnsmasq -C dnsmasq.conf -d` We leave that running or we add it to the payload itself 
 
-`
+```
 BASH dnsmasq -C dnsmasq.conf -d
 BASH disown %
 ``` 
