@@ -39,7 +39,7 @@ layout="us"	#Enter the name of the layout here [us, es, it]
 choose=false	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
 ```
 
-Only us ,es and it layouts are supported right now, I'll work on more layouts when I get the time.
+Only us ,es, it and fr layouts are supported right now, I'll work on more layouts when I get the time.
 
 
 # Usage
