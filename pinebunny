@@ -6,7 +6,7 @@ kb="/dev/hidg0 keyboard"
 last_cmd=""
 last_string=""
 line_num=0
-layout=""	#Enter the name of the layout here [us, es, it]
+layout=""	#Enter the name of the layout here [us, es, it, fr]
 choose=true	#Change this to false and hardcode a layout before if you only plan on using 1 keyboard distribution
 
 function convert_us()	#One function for every layout
@@ -483,9 +483,242 @@ function convert_it()
 	echo "$kbcode"
 }
 
+function convert_fr()
+{
+	local kbcode=""
+
+	if [ "$1" == " " ]
+	then
+		kbcode='space'
+	elif [ "$1" == "	" ]
+	then
+		kbcode='tab'
+	elif [ "$1" == "1" ]
+	then
+		kbcode='left-shift 1'
+	elif [ "$1" == "2" ]
+	then
+		kbcode='left-shift 2'
+	elif [ "$1" == "3" ]
+	then
+		kbcode='left-shift 3'
+	elif [ "$1" == "4" ]
+	then
+		kbcode='left-shift 4'
+	elif [ "$1" == "5" ]
+	then
+		kbcode='left-shift 5'
+	elif [ "$1" == "6" ]
+	then
+		kbcode='left-shift 6'
+	elif [ "$1" == "7" ]
+	then
+		kbcode='left-shift 7'
+	elif [ "$1" == "8" ]
+	then
+		kbcode='left-shift 8'
+	elif [ "$1" == "9" ]
+	then
+		kbcode='left-shift 9'
+	elif [ "$1" == "0" ]
+	then
+		kbcode='left-shift 0'
+	elif [ "$1" == "a" ]
+	then
+		kbcode='q'
+	elif [ "$1" == "A" ]
+	then
+		kbcode='left-shift q'
+	elif [ "$1" == "z" ]
+	then
+		kbcode='w'
+	elif [ "$1" == "Z" ]
+	then
+		kbcode='left-shift w'
+	elif [ "$1" == "q" ]
+	then
+		kbcode='a'
+	elif [ "$1" == "Q" ]
+	then
+		kbcode='left-shift a'
+	elif [ "$1" == "w" ]
+	then
+		kbcode='z'
+	elif [ "$1" == "W" ]
+	then
+		kbcode='left-shift z'
+	elif [ "$1" == "²" ]
+	then
+		kbcode='backquote'
+	elif [ "$1" == "~" ]
+	then
+		kbcode='left-shift backquote'
+	elif [ "$1" == "¬" ]
+	then
+		kbcode='right-alt backquote'
+	elif [ "$1" == "&" ]
+	then
+		kbcode='1'
+	elif [ "$1" == "¹" ]
+	then
+		kbcode='right-alt 1'
+	elif [ "$1" == "é" ]
+	then
+		kbcode='2'
+	elif [ "$1" == '"' ]
+	then
+		kbcode='3'
+	elif [ "$1" == "#" ]
+	then
+		kbcode='right-alt 3'
+	elif [ "$1" == "'" ]
+	then
+		kbcode='4'
+	elif [ "$1" == "{" ]
+	then
+		kbcode='right-alt 4'
+	elif [ "$1" == "(" ]
+	then
+		kbcode='5'
+	elif [ "$1" == "[" ]
+	then
+		kbcode='right-alt 5'
+	elif [ "$1" == "-" ]
+	then
+		kbcode='6'
+	elif [ "$1" == "|" ]
+	then
+		kbcode='right-alt 6'
+	elif [ "$1" == "è" ]
+	then
+		kbcode='7'
+	elif [ "$1" == "\`" ]
+	then
+		kbcode='right-alt 7'
+	elif [ "$1" == "_" ]
+	then
+		kbcode='8'
+	elif [ "$1" == "\\" ]
+	then
+		kbcode='right-alt 8'
+	elif [ "$1" == "ç" ]
+	then
+		kbcode='9'
+	elif [ "$1" == "^" ]
+	then
+		kbcode='right-alt 9'
+	elif [ "$1" == "à" ]
+	then
+		kbcode='0'
+	elif [ "$1" == "@" ]
+	then
+		kbcode='right-alt 0'
+	elif [ "$1" == "<" ]
+	then
+		kbcode='pipe'
+	elif [ "$1" == ">" ]
+	then
+		kbcode='left-shift pipe'
+	elif [ "$1" == "¦" ]
+	then
+		kbcode='right-alt left-shift pipe'
+	elif [ "$1" == ')' ]
+	then
+		kbcode='minus'
+	elif [ "$1" == "°" ]
+	then
+		kbcode='left-shift minus'
+	elif [ "$1" == "]" ]
+	then
+		kbcode='right-alt minus'
+	elif [ "$1" == "=" ]
+	then
+		kbcode='equal'
+	elif [ "$1" == "+" ]
+	then
+		kbcode='left-shift equal'
+	elif [ "$1" == "}" ]
+	then
+		kbcode='right-alt equal'
+	elif [ "$1" == "¨" ]
+	then
+		kbcode='left-shift lbracket'
+	elif [ "$1" == "$" ]
+	then
+		kbcode='rbracket'
+	elif [ "$1" == "£" ]
+	then
+		kbcode='left-shift rbracket'
+	elif [ "$1" == "¤" ]
+	then
+		kbcode='right-alt rbracket'
+	elif [ "$1" == "m" ]
+	then
+		kbcode='semicolon'
+	elif [ "$1" == "M" ]
+	then
+		kbcode='left-shift semicolon'
+	elif [ "$1" == "µ" ]
+	then
+		kbcode='right-alt semicolon'
+	elif [ "$1" == "ù" ]
+	then
+		kbcode='quote'
+	elif [ "$1" == "%" ]
+	then
+		kbcode='left-shift quote'
+	elif [ "$1" == "*" ]
+	then
+		kbcode='backslash'
+	elif [ "$1" == "," ]
+	then
+		kbcode='m'
+	elif [ "$1" == "?" ]
+	then
+		kbcode='left-shift m'
+	elif [ "$1" == "´" ]
+	then
+		kbcode='right-alt m'
+	elif [ "$1" == ";" ]
+	then
+		kbcode='comma'
+	elif [ "$1" == "." ]
+	then
+		kbcode='left-shift comma'
+	elif [ "$1" == ":" ]
+	then
+		kbcode='period'
+	elif [ "$1" == "/" ]
+	then
+		kbcocde='left-shift period'
+	elif [ "$1" == "·" ]
+	then
+		kbcode='right-alt period'
+	elif [ "$1" == "!" ]
+	then
+		kbcode='slash'
+	elif [ "$1" == "§" ]
+	then
+		kbcode='left-shift slash'
+
+	else
+		case $1 in
+		[[:upper:]])
+			tmp=$1
+			kbcode="left-shift ${tmp,,}"
+			;;
+		*)
+			kbcode="$1"
+			;;
+		esac
+	fi
+
+	echo "$kbcode"
+}
+
 if [ "$choose" = true ]
 then
-	echo Choose layout [us, es, it]
+	echo Choose layout [us, es, it, fr]
 	echo " "
 	read input
 	layout=$input
@@ -509,6 +742,9 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 			elif [ "$layout" == "it" ]
 			then
 				kbcode=$(convert_it "${info:$i:1}")
+			elif [ "$layout" == "fr" ]
+			then
+				kbcode=$(convert_fr "${info:$i:1}")
 			else
 				echo "ERROR: unknown layout"
 				exit
@@ -763,6 +999,9 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
 						elif [ "$layout" == "it" ]
 						then
 							kbcode=$(convert_it "${last_string:$j:1}")
+						elif [ "$layout" == "fr" ]
+						then
+							kbcode=$(convert_fr "${last_string:$j:1}")
 						fi
 
 						if [ "$kbcode" != "" ]
